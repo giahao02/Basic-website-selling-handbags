@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN PAGE</title>
+    <link rel="stylesheet" href="./CSS/styleadmin.css"> 
+    <link href="../index.html">
+</head>
+
+<body> 
+  <div id="co" >
+    <div id="head" class="head">
+        <h1>ADMIN PAGE</h1>
+    </div>
+    <div id="leftmenu" class="leftmenu">
+      <ul>
+          <li id="them" onclick="hienthi(this);"><a href="#"><b>Thêm sản phẩm vào</b></a></li>
+          <li id="sanpham" onclick="hienthi(this);"><a href="#"><b>Danh sách sản phẩm</b></li>
+          <li id="donhang" onclick="hienthi(this);"><a href="#"><b>Thông tin đơn hàng</b></a></li>
+          <li id="user" onclick="hienthi(this);"><a href="#"><b>Danh sách tài khoản</b></a></li>
+          <li id="thoat" ><a href="../index.html"><b>THOÁT</b></a></li>
+      </ul>
+    </div>
+    <div id="content" style="background-color:lightgoldenrodyellow;">
+      <form name="themsanpham" onsubmit="return ktthem()">
+        <label for="brand">Thương hiệu:</label><br>
+        <input type="text" id="brand" name="brand"><br>
+        <label for="name">Tên sản phẩm:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="tien">Giá sản phẩm(VNĐ):</label><br>
+        <input type="number" id="tien" name="tien"><br><br>
+        <label>Ảnh:  </label><input  type="file" onchange="changeimgadd(this)"><br><br>
+        <img id="hinh" src="./img/pic02.jpeg" style="width:200px;"><br>
+        <br>
+        <input  type="submit" value="Thêm sản phẩm">
+      </form>
+    </div>
+    <div id="modal1" class="modal" style="display:none;">
+      <div id="changeproduct" >
+        <button class="close" onclick="closechangebox()">x</button>
+        <div class="image">
+          <img id="imgbefore" src="./img/pic01.jpg" style="width:200px;">
+        </div>
+        <div id="info">
+          <label for="name">Tên Sản Phẩm</label>
+          <input type="text" id="name" value="Tên Sản Phẩm">
+          <br>
+          <label for="name">Thương Hiệu</label>
+          <input type="text" id="brand" value="Thương Hiệu">
+          <br>
+          <label for="name">Giá</label>
+          <input type="text" id="price" value="Giá">
+          <br>
+          <input type="file" id="fileimg" onchange="changeimg(this)">
+          <button id="save" onclick="changeproduct('ALMA BB Handbag')">Lưu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script  src="./JS/jsadmin.js">
+   window.onload=function(){
+	   createProduct();
+   }
+</script>
+</html>

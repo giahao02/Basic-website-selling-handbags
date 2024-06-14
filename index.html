@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+        <link href="./admin/admin.html">
+    </head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="user.js"></script>
+    <script>
+        var dangnhap=0;
+        var productArray = [
+                    {quantity:0, totalprice:0, productID: 100, brand: 'CELINE', img: './image/1.jpg', name: 'Horizontal Cabas In Textile With Triomphe Embroidery', price: 64000000, subImgs: 'image/1.1.jpg'},
+                    {quantity:0, totalprice:0, productID: 101, brand: 'LV', img: './image/2.jpg', name: 'Neo Monceau Epi White Shoulder Bag', price: 47000000},
+                    {quantity:0, totalprice:0, productID: 102, brand: 'CELINE', img: './image/3.jpg', name: '16 Teen Soft Tweed And Calfskin Crossbody Bag', price: 57190000},
+                    {quantity:0, totalprice:0, productID: 103, brand: 'GUCCI', img: './image/4.jpg', name: 'Ophidia GG Ball Shape Mini Shoulder Bag', price: 38270000},
+                    {quantity:0, totalprice:0, productID: 104, brand: 'CELINE', img: './image/5.jpg', name: 'Cabas Large Thais Mohair With Triomphe Print And Calfskin Tote Bag', price: 40420000},
+                    {quantity:0, totalprice:0, productID: 105, brand: 'LV', img: './image/6.jpg', name: 'Blanche BB Monogram Shoulder Bag', price: 46100000},
+                    {quantity:0, totalprice:0, productID: 106, brand: 'GUCCI', img: './image/7.jpg', name: 'Jackie 1961 Small Corduroy Shoulder Bag', price: 63360000},
+                    {quantity:0, totalprice:0, productID: 107, brand: 'CELINE', img: './image/8.jpg', name: 'Cabas Phantom Small In Soft Grained Calfskin Tote', price: 45650000},
+                    {quantity:0, totalprice:0, productID: 108, brand: 'LV', img: './image/9.jpg', name: 'Vavin PM Emboss Monogram Empreinte leather Shoulder Bag', price: 67000000},
+                    {quantity:0, totalprice:0, productID: 109, brand: 'CELINE', img: './image/10.jpg', name: '16 Teen Tweed And Calfskin Bucket Bag', price: 48830000},
+                    {quantity:0, totalprice:0, productID: 110, brand: 'CELINE', img: './image/11.jpg', name: 'Cabas Mini In Canvas With Celine Print And Calfskin Vertical Tote', price: 33000000},
+                    {quantity:0, totalprice:0, productID: 111, brand: 'LV', img: './image/12.jpg', name: 'My Lockme Two Tone Shoulder Bag', price: 45425000},
+                    {quantity:0, totalprice:0, productID: 112, brand: 'LV', img: './image/13.jpg', name: 'ALMA BB Handbag', price: 38610000},
+                    {quantity:0, totalprice:0, productID: 113, brand: 'GUCCI', img: './image/14.jpg', name: 'GG Marmont Matelassé Leather Wallet on Chain', price: 35431000},
+                    {quantity:0, totalprice:0, productID: 114, brand: 'CELINE', img: './image/15.jpg', name: 'Classic Small Calfskin Box Bag', price: 80620000},
+                    {quantity:0, totalprice:0, productID: 115, brand: 'CELINE', img: './image/16.jpg', name: 'Triomphe In Shiny Calfskin Shoulder Bag', price: 61890000},
+                    {quantity:0, totalprice:0, productID: 116, brand: 'LV', img: './image/17.jpg', name: 'Beaubourg MM Damier Ebene Canvas Shoulder bag', price: 46560000},
+                    {quantity:0, totalprice:0, productID: 117, brand: 'LV', img: './image/18.jpg', name: 'Pallas Monogram Canvas Grained Leather Handbag', price: 79220000},
+                    {quantity:0, totalprice:0, productID: 118, brand: 'GUCCI', img: './image/19.jpg', name: 'Ophidia GG Messenger Bag', price: 36340000},
+                    {quantity:0, totalprice:0, productID: 119, brand: 'CELINE', img: './image/20.jpg', name: 'Belt Pico Grained Calfskin Bag', price: 41336000},
+                    {quantity:0, totalprice:0, productID: 120, brand: 'GUCCI', img: './image/21.jpg', name: 'Jackie 1961 Small Washed GG Jacquard Denim Shoulder Bag', price: 54730000},
+                    {quantity:0, totalprice:0, productID: 121, brand: 'CELINE', img: './image/22.jpg', name: '16 Teen Soft Supple Grained Calfskin Crossbody Bag', price: 59961000}
+                ];
+                localStorage.setItem('product', JSON.stringify(productArray));
+        var index = 0;
+        function imgSlide() {
+            var imgs = ["image/background1.png", "image/background2.gif", "image/background3.gif"];
+            document.getElementById('img').src = imgs[index];
+            index++;
+            if (index === 3) {
+                index = 0;
+            }
+        }
+        setInterval(imgSlide, 3000);
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop()) {
+                    $('header').addClass('sticky');
+                } else {
+                    $('header').addClass('sticky');
+                }
+            });
+            createProduct();
+            showProduct();
+            showMenu();
+            closeProductInfo();
+        });       
+        function currency(num) {
+
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' VND';
+        }
+        function showMenu() {
+            var menuList = ['LV', 'GUCCI', 'CELINE'];
+            var ul = document.getElementById('menu');
+            var li = '<li><a href="index.html">TRANG CHỦ</a></li>';
+            for (var i = 0; i < menuList.length; i++) {
+                li += '<li><a href="index.html?brand=' + menuList[i].toUpperCase() + '&vitri=0">' + menuList[i] + '</a></li>';
+                ul.innerHTML = li;
+            }
+        }
+        function createProduct() {
+            if (localStorage.getItem('product') === null) {
+                var productArray = [
+                    {productID: 100, brand: 'CELINE', img: './image/1.jpg', name: 'Horizontal Cabas In Textile With Triomphe Embroidery', price: 64000000, subImgs: 'image/1.1.jpg'},
+                    {productID: 101, brand: 'LV', img: './image/2.jpg', name: 'Neo Monceau Epi White Shoulder Bag', price: 47000000},
+                    {productID: 102, brand: 'CELINE', img: './image/3.jpg', name: '16 Teen Soft Tweed And Calfskin Crossbody Bag', price: 57190000},
+                    {productID: 103, brand: 'GUCCI', img: './image/4.jpg', name: 'Ophidia GG Ball Shape Mini Shoulder Bag', price: 38270000},
+                    {productID: 104, brand: 'CELINE', img: './image/5.jpg', name: 'Cabas Large Thais Mohair With Triomphe Print And Calfskin Tote Bag', price: 40420000},
+                    {productID: 105, brand: 'LV', img: './image/6.jpg', name: 'Blanche BB Monogram Shoulder Bag', price: 46100000},
+                    {productID: 106, brand: 'GUCCI', img: './image/7.jpg', name: 'Jackie 1961 Small Corduroy Shoulder Bag', price: 63360000},
+                    {productID: 107, brand: 'CELINE', img: './image/8.jpg', name: 'Cabas Phantom Small In Soft Grained Calfskin Tote', price: 45650000},
+                    {productID: 108, brand: 'LV', img: './image/9.jpg', name: 'Vavin PM Emboss Monogram Empreinte leather Shoulder Bag', price: 67000000},
+                    {productID: 109, brand: 'CELINE', img: './image/10.jpg', name: '16 Teen Tweed And Calfskin Bucket Bag', price: 48830000},
+                    {productID: 110, brand: 'CELINE', img: './image/11.jpg', name: 'Cabas Mini In Canvas With Celine Print And Calfskin Vertical Tote', price: 33000000},
+                    {productID: 111, brand: 'LV', img: './image/12.jpg', name: 'My Lockme Two Tone Shoulder Bag', price: 45425000},
+                    {productID: 112, brand: 'LV', img: './image/13.jpg', name: 'ALMA BB Handbag', price: 38610000},
+                    {productID: 113, brand: 'GUCCI', img: './image/14.jpg', name: 'GG Marmont Matelassé Leather Wallet on Chain', price: 35431000},
+                    {productID: 114, brand: 'CELINE', img: './image/15.jpg', name: 'Classic Small Calfskin Box Bag', price: 80620000},
+                    {productID: 115, brand: 'CELINE', img: './image/16.jpg', name: 'Triomphe In Shiny Calfskin Shoulder Bag', price: 61890000},
+                    {productID: 116, brand: 'LV', img: './image/17.jpg', name: 'Beaubourg MM Damier Ebene Canvas Shoulder bag', price: 46560000},
+                    {productID: 117, brand: 'LV', img: './image/18.jpg', name: 'Pallas Monogram Canvas Grained Leather Handbag', price: 79220000},
+                    {productID: 118, brand: 'GUCCI', img: './image/19.jpg', name: 'Ophidia GG Messenger Bag', price: 36340000},
+                    {productID: 119, brand: 'CELINE', img: './image/20.jpg', name: 'Belt Pico Grained Calfskin Bag', price: 41336000},
+                    {productID: 120, brand: 'GUCCI', img: './image/21.jpg', name: 'Jackie 1961 Small Washed GG Jacquard Denim Shoulder Bag', price: 54730000},
+                    {productID: 121, brand: 'CELINE', img: './image/22.jpg', name: '16 Teen Soft Supple Grained Calfskin Crossbody Bag', price: 59961000}
+                ];
+                localStorage.setItem('product', JSON.stringify(productArray));
+            }
+         }
+        function showProduct() {
+            var url = new URL(document.location.href);
+            var brand = url.searchParams.get('brand');
+            var vitri = null;
+            if (!url.searchParams.get('vitri')) {
+                vitri = 0;
+            } else {
+                vitri = url.searchParams.get('vitri');
+            }
+            var s = '';
+            var productArray = JSON.parse(localStorage.getItem('product'));
+            if (brand === '' || brand === null) {
+                var sotrang = 0, dem = 0;
+                for (var i = vitri; i < productArray.length; i++) {
+                    s += '<div class="card">' + '<div class="product-top">' + '<class="product-thumb">' +
+                            '<img src="' + productArray[i].img + '">' +
+                            '<button class="info" onClick="showProductInfo(' + productArray[i].productID + ')">Chi tiết</button></div>' +
+                            '<p>' + productArray[i].name + '</p>' +
+                            '<p> Price: ' + currency(productArray[i].price) + '</p></div>';
+                    dem++;
+                    if (dem === 8)
+                        break;
+                }
+                sotrang = Math.ceil(productArray.length / 8);
+                var lienket = '';
+                for (var i = 1; i <= sotrang; i++) {
+                    vitri = (i - 1) * 8;
+                    var a = '<a href="index.html?all=' + vitri + '">' + i + '</a>';
+                    lienket += '<div class="pageNumber">' + a + '</div>';
+                }
+                document.getElementById('page').innerHTML = lienket;
+            } else {
+                var sotrang = 0, dem = 0;
+                var arrtempt = [];
+                for (var i = 0; i < productArray.length; i++) {
+                    if (brand === productArray[i].brand)
+                        arrtempt.push(productArray[i]);
+                }
+                for (var i = vitri; i < arrtempt.length; i++) {
+                    s += '<div class="card">' + '<div class="product-top">' + '<class="product-thumb">' +
+                            '<img src="' + arrtempt[i].img + '">' +
+                            '<button class="info" onClick="showProductInfo(' + arrtempt[i].productID + ')">Chi tiết</button></div>' +
+                            '<p>' + arrtempt[i].name + '</p>' +
+                            '<p> Price: ' + currency(arrtempt[i].price) + '</p></div>';
+                    dem++;
+                    if (dem === 8)
+                        break;
+                }
+                sotrang = Math.ceil(arrtempt.length / 8);
+                var lienket = '';
+                for (var i = 1; i <= sotrang; i++) {
+                    vitri = (i - 1) * 8;
+                    var a = '<a href="index.html?brand=' + brand + '&vitri=' + vitri + '">' + i + '</a>';
+                    lienket += '<div class="pageNumber">' + a + '</div>';
+                }
+                document.getElementById('page').innerHTML = lienket;
+            }
+            document.getElementById('product').innerHTML = s;
+        }
+        function showProductInfo(productid) {
+            document.getElementById('productInfo').style.display = 'block';
+            var productArray = JSON.parse(localStorage.getItem('product'));
+            for (var i = 0; i < productArray.length; i++) {
+                if (productArray[i].productID === productid) {
+                    document.getElementById('productname').innerHTML = productArray[i].name;
+                    document.getElementById('productprice').innerHTML = 'Giá: ' + currency(productArray[i].price);
+                    document.getElementById('imginfo').src = productArray[i].img;
+                    document.getElementById('quantity').value = 1;
+//                    var subImgs = productArray[i].subImgs;
+//                    for (var i = 0; i < subImgs.length; i++) {
+//                        var newSubImg = `<img src="${subImgs[i]}">`;
+//                        document.getElementById("subImgs").append(newSubImg);
+//                    }
+                    document.querySelector('#details .right button.addtocart').setAttribute('onClick', 'addToCart('+productid+')');
+                }
+            }
+        }
+        function closeProductInfo() {
+
+            document.getElementById('productInfo').style.display = 'none';
+        }
+        var u=0;
+        function addToCart(productid1) {
+          //  var size = document.getElementById('size').value;
+          if(dangnhap==0){
+            alert("Phải đăng nhập để mua hàng!");
+        }
+        else{
+            const quantity = document.getElementById('quantity').value;
+            productArray = JSON.parse(localStorage.getItem('product'));
+            var  producttemp={};
+            for (var i = 0; i < productArray.length; i++) {
+                if (productArray[i].productID == productid1) {
+                    producttemp=productArray[i];
+                }
+            }
+            if (u==0) {
+                var cartArray = [];
+                u=1;
+                producttemp.quantity = quantity;
+                producttemp.totalprice = quantity * producttemp.price;
+                cartArray.push(producttemp);
+                localStorage.setItem('cart', JSON.stringify(cartArray));
+            } else {
+                
+                cartArray = JSON.parse(localStorage.getItem('cart'));
+                producttemp.quantity = quantity;
+                producttemp.totalprice = quantity * producttemp.price;
+                cartArray.push(producttemp);
+                localStorage.setItem('cart', JSON.stringify(cartArray));
+            }
+            closeProductInfo();
+        }
+        }
+        function quantitydown() {
+            if (document.getElementById('quantity').value > 1) {
+                document.getElementById('quantity').value--;
+            }
+        }
+        function quantityup() {
+
+            document.getElementById('quantity').value++;
+        }
+//        $(() => {
+//            $('p img').click(function () {
+//                let imgPath = $(this).attr('src');
+//                $('#imginfo').attr('src', imgPath);
+//            });
+//        })
+        const inputSearch = document.getElementById("input-search");
+        const autoBox = document.getElementById("autobox");
+        function checkvaluesearch(){
+            //console.log(document.getElementById("input-search").value);
+            let checkData = document.getElementById("input-search").value;
+            let dataArray = [];
+            var productArray = JSON.parse(localStorage.getItem('product'));
+            if (checkData){
+                dataArray = productArray.filter((data) => {
+                    return data.name.toLocaleLowerCase().includes(checkData.toLocaleLowerCase());
+                });
+//                dataArray = dataArray.map((data) => {
+//                    return data.name = "<li>" + data.name + "</li>";
+//                });
+//                console.log(dataArray);
+                document.getElementById("autobox").classList.add("active");
+                showProd(dataArray);
+                let liItem = document.getElementById("autobox").querySelectorAll("li");
+                for (let i = 0; i < liItem.length; i++) {
+                    liItem[i].addEventListener("click", function () {
+                        document.getElementById("input-search").value = liItem[i].innerHTML;
+                        document.getElementById("autobox").classList.remove("active");
+                    });
+                }
+            } else {
+                document.getElementById("autobox").classList.remove("active");
+            }
+    }
+            function showProd(list) {
+            let listData = "";
+//            if (!list.length) {
+//                listData = "<li>" + document.getElementById("input-search").value + "</li>";
+//            } else {
+//                listData = 
+//            }
+            for(var i=0; i<list.length; i++){
+                listData += `<li onclick="showProductInfo(${list[i].productID})">${list[i].name}<li>`;
+               
+            }
+            document.getElementById("autobox").innerHTML = listData;
+        }
+        
+    </script>
+    <body>
+        <div id="user" class="modal" >
+            <div id="login">
+                <form id="loginform">
+                    <button type="button" class="close" onclick="closeform()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h2>ĐĂNG NHẬP</h2>
+                    <div class="logininfo">
+                        <div class="col"> 
+                            <label for="usernameLogin">Tên đăng nhập:</label>
+                            <input type="text" id="usernameLogin" >
+                            <div id="usernameerror"> Bạn chưa nhập tên đăng nhập</div>
+                            <label for="passwordLogin">Mật khẩu:</label>
+                            <input type="password" id="passwordLogin">
+                            <div id="passwordloginerror"> Sai thông tin đăng nhập</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnlogin">Log in</button>
+                    <p>
+                        Bạn chưa có tài khoản?
+                        <a href="#" onclick="showSignUp()">Đăng ký</a>
+                    </p>
+                </form>
+            </div>
+            <div id="signup" style="display: none;">
+                <form id="signupform">
+                    <button type="button" class="close" onclick="closeform()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h2>ĐĂNG KÝ</h2>
+                    <div class="signupinfo">
+
+                        <div class="col">
+                            <label for="fullname">Họ và tên:</label>
+                            <input type="text" id="fullname">
+                            <div id="fullnameerror">Bạn chưa nhập họ tên</div>
+                            <label for="address">Địa chỉ:</label>
+                            <input type="text" id="address">
+                            <div id="addresserror">Bạn chưa nhập địa chỉ</div>
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="text" id="phone">
+                            <div id="phoneerror">Bạn chưa nhập số điện thoại</div>
+                        </div>
+                        <div class="col">
+                            <label for="usernameSignUp">Tên đăng nhập:</label>
+                            <input type="text" id="usernameSignUp">
+                            <div id="usererror">Bạn chưa nhập tên đăng nhập</div>
+                            <label for="passwordSignUp">Mật khẩu:</label>
+                            <input type="password" id="passwordSignUp">
+                            <div id="passworderror">Mật khẩu phải trên 8 ký tự</div>
+                            <label for="passwordSignUp2">Nhập lại mật khẩu:</label>
+                            <input type="password" id="passwordSignUp2">
+                            <div id="password2error">Mật khẩu không khớp</div>
+                        </div>
+                        <button type="submit" id="btnsignup"> Sign up </button>
+
+                    </div>
+                    <p>
+                        Trở về trang <a href="#" onclick="showLogin()"> Đăng nhập</a>
+                    </p>
+                </form>
+            </div>
+        </div> 
+        <div id="user" class="modal" >
+            <div id="login">
+                <form id="loginform">
+                    <button type="button" class="close" onclick="closeform()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h2>ĐĂNG NHẬP</h2>
+                    <div class="logininfo">
+                        <div class="col"> 
+                            <label for="usernameLogin">Tên đăng nhập:</label>
+                            <input type="text" id="usernameLogin" >
+                            <div id="usernameerror"> Bạn chưa nhập tên đăng nhập</div>
+                            <label for="passwordLogin">Mật khẩu:</label>
+                            <input type="password" id="passwordLogin">
+                            <div id="passwordloginerror"> Sai thông tin đăng nhập</div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnlogin">Log in</button>
+                    <p>
+                        Bạn chưa có tài khoản?
+                        <a href="#" onclick="showSignUp()">Đăng ký</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+        <header>
+            <div class="logo">
+                <img src="logo.png"/>
+            </div>
+            <ul id="menu">
+            </ul>
+            <div class="others">
+                <i class="fas fa-search"></i>
+                <input class="input-search" type="text" placeholder="Tìm kiếm" id="input-search" onkeyup="checkvaluesearch()"> 
+                    <div class="autobox" id="autobox">
+                    </div>
+                <button onclick="show()" style="border: none; background-color:#FF9999; margin-bottom: 5px; margin-left: 10px; font-size: 19px; padding: 12px;">
+                    <i class="far fa-user" id="us">
+                   
+                    </i>
+                   
+                </button>
+                <li> <a class="fas fa-shopping-cart" onclick="showchangeproductbox()" ></a></li>    
+            </div>
+        </header>
+        <section id="Slider">
+            <div class="aspect-ratio-169"> 
+                <img id="img" src="image/background1.png">
+
+            </div>
+        </section>
+        <div id="main">
+            <div class="container" id="maincontent">
+                <div id="product">
+                </div>
+                <div id="productInfo" class="form">
+                    <div id="details">
+                        <button type="button" class="close" onClick="closeProductInfo()">+</button>
+                        <div class="left">
+                            <div class="left-top">
+                                <img id="imginfo" src="">
+                            </div>
+                            <div class="left-bottom">
+                                <img id="subImgs" src="">
+                            </div>
+                        </div>
+                        <div class="right">
+                            <h2 id="productname"></h2>
+                            <h4 id="productprice"></h4>
+                            <h4>Số lượng</h4>
+                            <button class="quantitydown" onClick="quantitydown()">-</button><input type="text" id="quantity" value="1"><button class="quantityup" onClick="quantityup()">+</button>
+                            <button class="addtocart" >Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="page">
+                </div>
+            </div>
+        </div>
+        <div id="mail">
+            <p>
+                Nhận thông báo mới nhất từ chúng tôi
+            </p>
+            <input type="text" placeholder="Nhập Email của bạn...">
+        </div>
+        <div id="foot">
+            <div class="foot-top">
+                <li><a href=""><img src="https://cdn.glitch.me/dedd8549-98e6-4a56-b9a0-11cb714a60e6%2F260351558_1073279546751371_1833228317209633418_n.png?v=1637675246864"></a></li>
+                <li>Hướng dẫn</li>     
+                <li>Giới thiệu</li>
+                <li><a href=""></a>Liên hệ</li>
+            </div>
+            <div class="foot-center">
+                <p>
+                    Địa chỉ: XX/XXX ZZZ, Quận X, TPHCM
+                </p>
+            </div>
+            <div class="foot-bottom">
+                2021 © BeeBags All rights reserved
+            </div>  
+        </div>
+        <div id="modal1" class="modal" style="display:none;">
+            <div id="changeproduct" style="text-align: center;">
+              <button class="close" onclick="closechangebox()">x</button>
+              <div id="cont">
+
+              </div>
+              <br>
+              <button id="save" onclick="chotdon()">Chốt Đơn</button>
+            </div>
+          </div>
+    </body>
+</html>

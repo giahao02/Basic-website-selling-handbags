@@ -1,0 +1,644 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+    /*user*/
+.modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    top:0;
+    left:0;
+    display:none;
+    z-index: 10;
+    overflow-y:auto;
+}
+#login {
+    width: 470px;
+    border-radius: 15px;
+    background-color: white;
+    margin: 100px auto 0 auto;
+    padding-bottom: 20px;
+    position: relative;
+
+}
+#login .close{
+    position: absolute;
+    right:15px;
+    top: 10px;
+    font-size: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+#login .close:hover{
+    color: #ffadad;
+}
+#login h2{
+    display: inline-block;
+    margin: 20px 0 10px 145px;
+    padding-bottom: 20px;
+    font-weight: 900;
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+}
+.logininfo {
+    display: flex;
+    justify-content: center;
+}
+#login label {
+    display: block;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+#login input{
+    display: inline-block;
+    padding: 15px;
+    width: 250px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13pt;
+    outline: none;
+}
+#login input:focus{
+    border: 2px solid #ffd7ba;
+}
+#login div[id*="error"]{
+    width: 100%;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+    font-weight: bold;
+    margin: 5px auto 0;
+    padding: 5px;
+    display: none;
+    cursor: default;
+}
+#login #btnlogin{
+    display: block;
+    background-color: #ffadad;
+    border: #ffadad;
+    width: 200px;
+    height: 40px;
+    margin: 50px auto 0;
+    font-size: 20pt;
+    line-height: 30px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    border-color: #ffadad ;
+    box-shadow: 2px 2px 10px 0 rgba(219, 155, 155, 0.7);
+}
+#login p{
+    margin-top: 60px;
+    text-align: center;
+}
+#login p a{
+    text-decoration: none;
+    color: #ffadad;
+    font-weight: bold;
+}
+#login #btnlogin:hover{
+    background-color: #d8e2dc;
+}
+#signup{
+    width: 700px;
+    background-color: #fff;
+    margin: 100px auto 0 auto;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+    display: none;
+}
+#signup .close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+#signup .close:hover{
+    color: #ffadad;
+}
+#signup .signupinfo{
+    display: flex;
+    flex-wrap: wrap;
+}
+#signup .col{
+    width: 50%;
+    padding:  0 50px;
+}
+#signup h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    display: inline-flex;
+    margin: 20px 0 10px 280px;
+    padding-bottom: 10px;
+    font-weight: 900;
+    padding-bottom: 20px;
+}
+#signup label{
+    display: block;
+    font-weight: bold;
+    font-size: 13pt;
+    margin-top: 5px;
+    cursor: pointer;
+}
+#signup input{
+    display: inline-block;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding-left: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13pt;
+    outline: none;
+}
+#signup input:focus{
+    border: 2px solid #ffd7ba;
+}
+#signup div[id*="error"]{
+    width: 100%;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    color: #a94442;
+    font-weight: bold;
+    margin: 5px auto 0;
+    padding: 5px;
+    display: none;
+    cursor: default;
+}
+#signup #btnsignup{
+    display: block;
+    background-color: #ffadad;
+    width: 200px;
+    height: 40px;
+    border: #ffadad;
+    margin: 50px auto 0;
+    font-size: 20pt;
+    line-height: 30px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 2px 2px 10px 0 rgba(219, 155, 155, 0.7);
+}
+#signup p{
+    margin-top: 50px;
+    text-align: center;
+}
+#signup p a{
+    text-decoration: none;
+    color: #ffadad;
+    font-weight: bold;
+}
+#signup #btnsignup:hover{
+    background-color: #d8e2dc;
+}
+#signup #btnsignup:active{
+    box-shadow: none;
+}
+@media screen and (max-width:600px){
+    .modal{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0,0,0,0.6);
+        position: fixed;
+        top:0;
+        left: 0;
+        display: none;
+        z-index: 10;
+    }
+    #signup{
+        width: 450px;
+        background-color: #fff;
+        margin: 30px auto 0;
+    }
+    #signup .signupinfo{
+        flex-direction: column;
+    }
+    #signup .col{
+        align-self: center;
+        width: auto;
+        padding:  0;
+    }
+    #signup h2 {
+        margin-left: 165px;
+    }
+}
+header{
+    display:flex;
+    justify-content: space-between;
+    padding: 12px 50px;
+    height: 70px;
+    align-item:center;
+    background-color:#FF9999;
+}
+.sticky{
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+}
+.logo{
+    flex:1;
+}
+.logo img{
+    height: 50px;
+}
+#menu{
+    flex:3;
+    display: flex;
+    padding-top: 10px;
+}
+#menu >li{
+    padding: 0 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.others{
+    flex:1;
+    display: flex;
+}
+.others > li{
+    padding: 12px;
+    margin-left: 10px;
+    font-size: 19px;
+}
+.others > li:first-child{
+    position: relative;
+}
+.others > li:first-child input{
+    width: 100%;
+    border:none;
+    border-bottom: 3px solid #333;
+}
+.others > li:first-child i{
+   position: absolute;
+    right: 10px;
+    bottom: 17px;
+    font-size: initial
+}
+.others > i{
+    position: absolute;
+    margin-top: 16px;
+    margin-left: 155px;
+    font-size: 19px;
+}
+.input-search{
+    margin: 10px;
+}
+#autobox {
+    position: absolute;
+    top: 100%;
+    background-color: #FFF;
+    background-color: rgba(221, 221, 221, 0.5);
+    overflow-y: auto;
+}
+#autobox li {
+    list-style: none;
+    padding: 3px 0 3px 12px;
+    cursor: pointer;
+}
+#autobox li:hover {
+    color: #8133e0;
+}
+.active{
+    display: block;
+}            
+.aspect-ratio-169 {
+    display: block;
+    position: relative;
+    padding-top: 56.25%;
+}
+.aspect-ratio-169 img {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#main{
+    top: 15px;
+    position: relative;
+}
+#main #maincontent{
+    background-color: #fff;
+    box-shadow: 0 0 15px 5px #999999;
+}
+#main #product{
+    display: flex;
+    flex-wrap:wrap;
+}
+.container{
+    width: 95%;
+    margin: auto;
+}
+.card{
+    width: calc(25% - 10px);
+    height: auto;
+    border: 1px solid #000;
+    text-align: center;
+    margin: 10px 0 0px 10px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.card img{
+    width: 100%;
+    height: auto;
+    transform: scale(1);
+    transition: all 0.5s;
+}
+.card p{
+    font-size: sans-serif;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+.card .product-top{
+    position: relative;
+    overflow: hidden;
+}
+.card .product-top .product-thumb img{
+    display: block;
+}
+.card .product-top .info{
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    background-color: #FF9999;
+    color: #fff;
+    padding: 9px 0px;
+    position: absolute;
+    bottom: -36px;
+    width: 100%;
+    transition: 0.25s ease-in-out;
+    opacity: 0.85;
+}
+.card:hover img{
+    transform: scale(1.1);
+
+}
+.card:hover .info{
+    bottom: 0px;
+}
+/*chi tiết sản phẩm*/
+.form{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+#main #productInfo #details{
+    height: 600px;
+    width: 1000px;
+    background-color: #fff;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px 20px 20px;
+    position: relative;
+    animation: topdown 0.5s;
+    z-index: 20;
+}
+#main #productInfo #details .close{
+    position: absolute;
+    top: 20px;
+/*    right: 15px;*/
+    font-size: 30px;
+    transform: rotate(45deg);
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+#main #productInfo #details .left{
+    width: 60%;
+}
+#imginfo{
+    width: 300px;
+    margin-left: 100px;
+}
+#main #productInfo #details .left .left-bottom{
+    list-style: none;
+    display: flex;
+}
+#main #productInfo #details .left .left-bottom #subImgs{
+    width: 130px;
+    margin: 2px;
+    cursor: pointer;
+}
+#main #productInfo #details .right{
+    height: 100%;
+    width: 40%;
+}
+#main #productInfo #details .right #quantity{
+    border: 2px solid #000;
+    height: 30px;
+    font-size: 16pt;
+    width: 60px;
+    text-align: center;
+}
+#main #productInfo #details .right .quantitydown {
+    display: inline-block;
+    font-size: 16pt;
+    color: #ff4700;
+    width: 50px;
+    height: 30px;
+    border: 2px solid #000;
+    border-right: none;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+#main #productInfo #details .right .quantityup {
+    display: inline-block;
+    font-size: 16pt;
+    color: #ff4700;
+    width: 50px;
+    height: 30px;
+    border: 2px solid #000;
+    border-left: none;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+#main #productInfo #details .right .addtocart {
+    display: block;
+    cursor: pointer;
+    font-size: 16pt;
+    padding: 10px 30px;
+    background-color: #ff9999;
+    color: #fff;
+    border: 2px solid #000;
+    margin-top: 50px;
+}
+h2{
+    display: block;
+}
+h4{
+    display: block;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+/*trang*/
+#main #page{
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    padding: 10px;
+}
+#main #page .pageNumber a{
+    display: block;
+    height: 22px;
+    width: 22px;
+    background-color: #FF99CC;
+    border: 2px solid #FF99CC;
+    text-align: center;
+    color: #fff;
+    margin-right: 5px
+}
+#mail{
+    line-height: 20px;
+    letter-spacing: 1px;
+    font-size: 17px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    height: 150px;
+    padding-top: 50px;
+}
+#mail input{
+    margin-top: 30px;
+    border:none;
+    border-bottom: 1px solid #000;
+    paddng-bottom: 20px;
+    width: 400px;
+    text-align: center;
+    outline: none;
+}
+#foot{
+    background-color: #AAAAAA	;
+}
+.foot-top{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 70px;
+}
+.foot-top img{
+    height: 50px;
+}
+.foot-top li{
+    padding: 0 12px;
+    position: relative;
+}
+.foot-top li::after{
+    content:"";
+    display: block;
+    width: 1px;
+    height: 80%;
+    background: #CCCCCC;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.foot-top li:last-child::after{
+    display: none;
+}
+.foot-center{
+    text-align: center;
+    margin: 20px 0;
+}
+.foot-bottom{
+    text-align: center;
+    border-top: 1px solid #000000;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+
+.modal{
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: fixed;
+	top:0;
+	left: 0;
+	display: none;
+	z-index: 10;
+}
+#modal1 #changeproduct{
+	width: 60%;
+	height: auto;
+	background-color: #fff;
+	margin: 50px auto;
+	position: relative;
+	padding-top: 50px;
+	animation: topdown 0.5s;
+}
+#modal1 #changeproduct .close{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	font-size: 30pt;
+	background: pink;
+	outline: none;
+	cursor: pointer;
+}
+#modal1 #changeproduct .close:hover{
+	color: #ff4700;
+}
+#modal1 #changeproduct button#save{
+	font-size: 16pt;
+	width: 200px;
+	padding: 10px;
+	margin: 30px auto;
+	border: 3px solid #e75f71;
+	background-color: #e75f71;
+	color: #fff;
+	display: block;
+	cursor: pointer;
+}
+#modal1 #changeproduct button#save:hover{
+	background-color: #fff;
+	color: #ff4700;
+}
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width:100%;
+    
+    border-collapse: collapse;
+    
+}
+table, td, th {
+    border: 1px solid black;
+}

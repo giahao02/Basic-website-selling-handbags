@@ -1,0 +1,122 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+.container{
+  max-width:100%;
+  margin: auto;
+}
+.product-items{
+  display: flex;
+  justify-content: space-between;
+  background-color: #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+.product-item{
+  width: 30%;
+  background-color: aliceblue;
+  padding: 12px;
+}
+.product-item img{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.product-item-text{
+  display: flex;
+  justify-content: space-between;
+}
+.product-item button{
+  margin-top: 12px;
+  height: 32px;
+  padding: 0 12px;
+  /* border: none; */
+  cursor: pointer;
+  border-radius: 100px;
+  transition:all 0.5s;
+}
+.product-item button:hover{
+  background-color: green;
+  color: aliceblue;
+}
+/* -----------------------------------------cart----------------------------- */
+.cart{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding-top: 30px;
+  height: 1000px;
+}
+.cart table{
+  width: 100%;
+}
+.cart table thead tr th:first-child {
+  text-align: left; 
+}
+.cart table tr td {
+  border-bottom: 1px solid #ddd ;
+  padding: 10px 0;
+}
+.cart table tbody tr td:last-child{
+  text-align: right;
+}
+.cart{
+  position:fixed;
+  height: 100xh;
+  width: 400px;
+  right:0;
+  top:22px;
+  background-color:rgba(121, 107, 107,0.9);
+  padding:12px 20px;
+  overflow-y:scroll; 
+  right: -100%;
+}
+.cart button{
+  margin-top: 40px;
+  margin-left: 40px;
+  height: 32px;
+  padding: 0 12px;
+  /* border: none; */
+  cursor: pointer;
+  border-radius: 100px;
+  background-color: tomato;
+}
+.product{
+  margin-top:20px;
+}
+.cart-icon i{
+  cursor: pointer;
+}
+.cart i{
+  cursor: pointer;
+  margin-bottom: 30px;
+  float: right;
+}
+.cart h2{
+  margin-top: 40px;
+}
+.cart-icon {
+  position: relative;
+
+}
+.cart-icon .fas{
+  position: absolute;
+  top:-20px;
+  right:0;
+  padding: 5px 20px;
+}
+.btn:hover{
+  background-color: green;
+  color: #fff;
+}
+.cart h2{
+color: rgb(218, 238, 131);
+}
+.cart thead th{
+  color: rgb(218, 238, 131);
+  }
+.cart .price-total{
+  color: rgb(173, 203, 241);
+}
